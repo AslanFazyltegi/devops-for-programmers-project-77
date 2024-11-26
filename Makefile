@@ -9,6 +9,7 @@ create_balancer:
 
 deploy_all:
 	make -C terraform tf-create-cloud-structure
+        make -C terraform tf-get-vm-ips
 	make -C ansible ansible-full
 	make -C terraform tf-create-cloud-alb
 

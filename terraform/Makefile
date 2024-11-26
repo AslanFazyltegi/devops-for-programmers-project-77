@@ -9,7 +9,7 @@ tf-create-cloud-structure:
 
 # Получение IP-адресов и создание инвентаря Ansible
 tf-get-vm-ips:
-	terraform output instance_ips
+#	terraform output instance_ips
 	terraform apply -target=local_file.inventory
 
 # Получение IP-адресов для целевых групп
