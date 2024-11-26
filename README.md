@@ -1,6 +1,24 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/AslanFazyltegi/devops-for-programmers-project-77/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AslanFazyltegi/devops-for-programmers-project-77/actions)
 
+# Статус серверов
+
+## ALB
+![ALB Status](https://www.upmon.com/badge/10839e84-d6f0-451e-bf47-4b9e92/YDDMSTLn-2/ALB.svg)
+
+## VM1
+![VM1 Status](https://www.upmon.com/badge/10839e84-d6f0-451e-bf47-4b9e92/hQ2_9TCd-2/VM1.svg)
+
+
+# Рекомендуемые действия
+  make create_structure
+  Потмо проверить поднялись ли сервера
+  �make install_app (более детальные команды в Makefike  каталога ansible)
+   make create_balancer После проверить инфраструктуру
+
+  Для более гибкого управления и развертывания рекомендуется использовать команды make из  каталогов ansible, terraform
+
+
 
 
 # Инструкция по запуску инфраструктуры и приложения

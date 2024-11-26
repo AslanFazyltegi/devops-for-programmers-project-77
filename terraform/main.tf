@@ -155,7 +155,7 @@ EOF
 
   scale_policy {
     fixed_scale {
-      size = 1
+      size = 2
     }
   }
 
@@ -193,9 +193,9 @@ output "vm_1_ip" {
   value = yandex_compute_instance_group.ig-a.instances[0].network_interface[0].ip_address
 }
 
-#output "vm_2_ip" {
-#  value = yandex_compute_instance_group.ig-a.instances[1].network_interface[0].ip_address
-#}
+output "vm_2_ip" {
+  value = yandex_compute_instance_group.ig-a.instances[1].network_interface[0].ip_address
+}
 
 resource "yandex_alb_target_group" "vhosting-tg-a" {
 depends_on = [yandex_compute_instance_group.ig-a]
@@ -206,10 +206,10 @@ depends_on = [yandex_compute_instance_group.ig-a]
     ip_address = yandex_compute_instance_group.ig-a.instances[0].network_interface[0].ip_address
   }
 
-#  target {
-#    subnet_id  = yandex_vpc_subnet.subnet.id
-#    ip_address = yandex_compute_instance_group.ig-a.instances[1].network_interface[0].ip_address
-#  }
+  target {
+    subnet_id  = yandex_vpc_subnet.subnet.id
+    ip_address = yandex_compute_instance_group.ig-a.instances[1].network_interface[0].ip_address
+  }
 }
 
 
