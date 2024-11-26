@@ -14,5 +14,5 @@ redmine_db_database: redmine
 #redmine_db_ssl_ca: /home/redmine/.mysql/root.crt
 #redmine_db_ssl_mode: verify_identity
 
-#DD_API_KEY: "eba33febfdf12f14772db3e97cf7d720"
-#DD_SITE: "us5.datadoghq.com"
+DD_API_KEY: "eba33febfdf12f14772db3e97cf7d720"
+DD_SITE: "us5.datadoghq.com"
