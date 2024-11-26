@@ -1,0 +1,18 @@
+mysql_user: redmine
+mysql_password: 12345678
+mysql_database: redmine
+mysql_root_password: 87654321
+redmine_db_mysql: redmine-mysql
+
+
+#redmine_db_mysql: rc1d-njkxvnkkrrs34da3.mdb.yandexcloud.net
+#redmine_db_mysql: redmine-mysql
+redmine_db_username: redmine
+redmine_db_password: 12345678
+redmine_db_database: redmine
+#redmine_db_adapter: mysql2
+#redmine_db_ssl_ca: /home/redmine/.mysql/root.crt
+#redmine_db_ssl_mode: verify_identity
+
+#DD_API_KEY: "eba33febfdf12f14772db3e97cf7d720"
+#DD_SITE: "us5.datadoghq.com"

@@ -1,0 +1,44 @@
+---
+- name: Deploy Redmine application
+  hosts: all
+  become: true
+  vars_files:
+    - group_vars/webservers/vault.yml
+  tasks:
+    - name: Create environment file from template
+      ansible.builtin.template:
+        src: templates/.env.j2
+        dest: /home/admin/.env
+        owner: admin
+        group: admin
+        mode: 0644
+
+    - name: Create Dockerfile file from template
+      ansible.builtin.template:
+        src: templates/Dockerfile.j2
+        dest: /home/admin/Dockerfile
+        owner: admin
+        group: admin
+        mode: 0644
+
+    - name: Redmine Image Building
+      shell: |
+        cd /home/admin && docker build -t redmine:yandex-cloud .
+
+    - name: Ensure Docker network exists
+      community.docker.docker_network:
+        name: redmine-network
+        state: present
+
+    - name: Run Redmine container
+      community.docker.docker_container:
+        name: redmine
+        image: redmine:yandex-cloud
+        state: started
+        restart_policy: always
+        env_file: /home/admin/.env
+        ports:
+          - "3000:3000"
+        networks:
+          - name: redmine-network
+  tags: deploy

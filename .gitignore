@@ -1,3 +1,5 @@
 yandex-keys/
 .terraform/
 terraform.tfvars
+secret.*
+*.backup

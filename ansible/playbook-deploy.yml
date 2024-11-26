@@ -1,0 +1,48 @@
+---
+- name: Deploy Redmine application
+  hosts: all
+  become: true
+  tasks:
+    - name: Create environment file from template
+      ansible.builtin.template:
+        src: templates/.env.j2
+        dest: /home/admin/.env
+        owner: admin
+        group: admin
+        mode: 0644
+
+    - name: Pull MySQL8 Docker image
+      community.docker.docker_image:
+        name: mysql:8
+        source: pull
+
+    - name: Pull Redmine Docker image
+      community.docker.docker_image:
+        name: redmine
+        source: pull
+
+    - name: Ensure Docker network redmine-network exists
+      community.docker.docker_network:
+        name: redmine-network
+        state: present
+
+    - name: Run MySQL8 container
+      community.docker.docker_container:
+        name: redmine-mysql
+        image: mysql:8
+        state: started
+        restart_policy: always
+        env_file: /home/admin/.env
+        network_mode: redmine-network
+
+    - name: Run Redmine container
+      community.docker.docker_container:
+        name: redmine
+        image: redmine
+        state: started
+        restart_policy: always
+        env_file: /home/admin/.env
+        network_mode: redmine-network
+        ports:
+          - "3000:3000"
+  tags: deploy
